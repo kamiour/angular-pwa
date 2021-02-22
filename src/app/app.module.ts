@@ -13,11 +13,12 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing.module";
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent, LessonsComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -25,6 +26,7 @@ import { AppRoutingModule } from "./app-routing.module";
     ServiceWorkerModule.register("/ngsw-worker.js", {
       enabled: environment.production,
     }),
+    RouterModule,
   ],
   providers: [LessonsService],
   bootstrap: [AppComponent],
